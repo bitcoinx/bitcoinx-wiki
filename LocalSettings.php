@@ -99,6 +99,7 @@ $wgShellLocale = "en_US.utf8";
 # Site language code, should be one of the list in ./languages/Names.php
 $wgLanguageCode = "en";
 
+#Useless/deprecated anyway - see http://www.mediawiki.org/wiki/Manual:$wgSecretKey
 $wgSecretKey = "6ab1085a519580c3313d8eaa6b554277a71398dfc6cac72dd800e35485f02d3d";
 
 # Site upgrade key. Must be set to a string (default provided) to turn on the
