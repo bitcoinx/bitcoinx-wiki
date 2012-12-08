@@ -51,14 +51,20 @@ $wgEnotifWatchlist     = true; # UPO
 $wgEmailAuthentication = true;
 
 ## Database settings
-$wgDBtype           = "postgres";
-$wgDBserver         = "ec2-54-243-223-183.compute-1.amazonaws.com";
-$wgDBname           = "dcc4qtjaqso85s";
-$wgDBuser           = "lzaxekoeywqqii";
-$wgDBpassword       = "WvujzH5kQTuGdrUDd2qzEvD_40";
+$_wgDBConnectionString = getenv('DATABASE_URL');
+if (preg_match('%(.*?)://([^:]+):([^@]+)@([^:]+):(\d+)/(.*)%', $_wgDBConnectionString, $regs, PREG_OFFSET_CAPTURE)) {
+	$wgDBtype = $regs[1][0];
+	$wgDBuser = $regs[2][0];
+	$wgDBpassword = $regs[3][0];
+	$wgDBserver = $regs[4][0];	
+	$wgDBport = $regs[5][0];
+	$wgDBname = $regs[6][0];
+} else {
+	die("Failed to parse DB connection string");
+}
+
 
 # Postgres specific settings
-$wgDBport           = "5432";
 $wgDBmwschema       = "mediawiki";
 
 ## Shared memory settings
